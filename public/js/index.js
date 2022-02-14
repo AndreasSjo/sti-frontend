@@ -1,7 +1,7 @@
 var aDiv = document.getElementById('app');
 
 var aTable = document.createElement('table');
-    aTable.style.width = '100px';
+    aTable.style.width = '100%';
     aTable.setAttribute('border', '1');
 
         for (var i = 0; i < 3; i++){
