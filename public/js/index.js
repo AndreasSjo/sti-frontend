@@ -1,7 +1,7 @@
 var aDiv = document.getElementById('app');
-    aDiv.createTextNode("test");
+
 var aTable = document.createElement('table');
-    aTable.style.width = '100%';
+    aTable.style.width = '100px';
     aTable.setAttribute('border', '1');
 
         for (var i = 0; i < 3; i++){
@@ -10,4 +10,5 @@ var aTable = document.createElement('table');
                 aRow.appendChild(aText);
             aTable.appendChild(aRow);
         }
+
 aDiv.appendChild(aTable);
