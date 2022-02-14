@@ -1,21 +1,17 @@
 var aDiv = document.getElementById('app');
-var aButton = document.createElement('button');
-    aButton.innerHTML = 'add row';
-    aButton.onclick = addOnClick();
+var addButton = document.createElement('button');
+    addButton.innerHTML = 'add row';
+    addButton.onclick = addOnClick;
+    addButton.style.margin = "8px";
 
 var aTable = document.createElement('table');
     aTable.style.width = '100%';
     aTable.setAttribute('border', '1');
 
-        for (var i = 0; i < 3; i++){
-            var aRow = document.createElement('tr');
-            var aText = document.createTextNode("textrow number: " + i);
-                aRow.appendChild(aText);
-            aTable.appendChild(aRow);
-        }
 
 aDiv.appendChild(aTable);
-aDiv.appendChild(aButton);
+aDiv.appendChild(addButton);
+
 
 function addOnClick(){
     var aRow = document.createElement('tr');
@@ -23,3 +19,5 @@ function addOnClick(){
                 aRow.appendChild(aText);
             aTable.appendChild(aRow);
 }
+
+
