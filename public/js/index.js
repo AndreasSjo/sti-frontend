@@ -1,3 +1,16 @@
+const app = Vue.createApp({
+    template: '<h1>Hello {{firstName}}</h1>',
+    data() {
+        return {
+            firstName: 'John',
+        }
+    },
+})
+
+app.mount('#app')
+
+
+/* 
 var mainDiv = document.getElementById('app');
 
 var aContainer = document.createElement('div');
@@ -32,6 +45,6 @@ var okBtn = document.createElement('button');
 var noBtn  = document.createElement('button');
     noBtn.className = "btn btn-danger m-3";
     aColumn.appendChild(noBtn);
-
+ */
 
 
