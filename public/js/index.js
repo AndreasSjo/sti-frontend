@@ -6,8 +6,8 @@ var aContainer = document.createElement('div');
         mainDiv.appendChild(aContainer);
        
 var aRow = document.createElement('div');
-    aRow.className = "row-md justify-content-md-center";
-    aRow.style.border = "thick solid #FF3333";
+    aRow.className = "row-md justify-content-md-center w-50";
+    aRow.style.border = "thick solid RED";
     aContainer.appendChild(aRow);
 
 var header = document.createElement('div');
@@ -20,15 +20,18 @@ var imgJaws = document.createElement('img');
     imgJaws.style.height ="150px";
     aRow.appendChild(imgJaws);
 
-var aColumn = document.createElement('div')
-    aColumn.className = "column"
+var aColumn = document.createElement('div');
+    aColumn.className = "col";
+    aColumn.setAttribute("id", "yesBtn");
+        aRow.appendChild(aColumn);
+
 var okBtn = document.createElement('button');
     okBtn.className = "btn btn-success m-3";
-    aRow.appendChild(okBtn);
+    aColumn.appendChild(okBtn);
 
 var noBtn  = document.createElement('button');
     noBtn.className = "btn btn-danger m-3";
-    aRow.appendChild(noBtn);
+    aColumn.appendChild(noBtn);
 
 
 
