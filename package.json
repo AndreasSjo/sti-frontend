@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/AndreasSjo/sti-frontend#readme",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "express": "^4.17.2",
     "healthcheck": "^0.1.3",
     "path": "^0.12.7",
-    "serve-favicon": "^2.5.0"
-  },
-  "devDependencies": {}
+    "serve-favicon": "^2.5.0",
+    "three": "^0.137.5"
+  }
 }

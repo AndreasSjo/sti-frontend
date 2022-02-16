@@ -1,42 +1,24 @@
-var aDiv = document.getElementById('app');
-var btnDiv = document.createElement('div');
-    btnDiv.setAttribute("id", "btnDiv");
-    btnDiv.style.flex="flex-direction: row";
+var mainDiv = document.getElementById('app');
 
-var addButton = document.createElement('button');
-    addButton.innerHTML = 'add row';
-    addButton.onclick = addOnClick;
-    addButton.style.margin = "8px";
-        btnDiv.appendChild(addButton);
+var aContainer = document.createElement('div');
+    aContainer.className = "container-md";
+        mainDiv.appendChild(aContainer);
+        
+var aRow = document.createElement('div');
+    aRow.className = "row justify-content-md-center";
+    aContainer.appendChild(aRow);
 
-var delButton = document.createElement('button');
-    delButton.innerHTML = 'delete row';
-    delButton.onclick = delOnClick;
-    delButton.style.margin = "8px";
-    btnDiv.appendChild(delButton);
+var header = document.createElement('div');
+    header.innerHTML = "<H1>Filmer</H1>";
+    aRow.appendChild(header);
 
-var aTable = document.createElement('table');
-    aTable.setAttribute("id", "aTable");
-    aTable.style.width = '100%';
-    aTable.setAttribute('border', '1');
+var okBtn = document.createElement('button');
+    okBtn.className = "btn btn-success m-3";
+    aRow.appendChild(okBtn);
 
+var noBtn  = document.createElement('button');
+    noBtn.className = "btn btn-danger m-3";
+    aRow.appendChild(noBtn);
 
-aDiv.appendChild(aTable);
-aDiv.appendChild(btnDiv);
-
-var rowCount = 0;
-
-function addOnClick(){
-    var aRow = document.createElement('tr');
-        aRow.setAttribute("id", "row"+rowCount);
-            var aText = document.createTextNode("New row");
-                aRow.appendChild(aText);
-            aTable.appendChild(aRow);
-}
-
-function delOnClick(){
-    document.getElementById("aTable").deleteRow(0);
-
-}
 
 
