@@ -1,5 +1,6 @@
 
 var mainDiv = document.getElementById('app');
+    
    // mainDiv.style.border = "thick solid BLUE";
     mainDiv.className = "d-flex flex-column";
 
@@ -16,16 +17,8 @@ var header = document.createElement('div');
 
  var imgRow = document.createElement('div');
     imgRow.className = "row justify-content-center mt-5 mb-5";
-    imgRow.style.border = "thick solid BLUE";
+    //imgRow.style.border = "thick solid BLUE";
     mainDiv.appendChild(imgRow); 
-
-/* var imgJaws = document.createElement('img');
-    imgJaws.src = "/images/JAWS.jpg";
-    imgJaws.style.width ="400px";
-    imgJaws.style.height ="500px";
-    imgJaws.className = "rounded";
-    imgJaws.id = 'movieImg'
-    imgRow.appendChild(imgJaws);  */
 
 var cardContainerDiv = document.createElement('div');
     cardContainerDiv.className = "cardcontainer list";
@@ -33,7 +26,6 @@ var cardContainerDiv = document.createElement('div');
     
 var cardUl = document.createElement('ul');
     cardUl.className = 'list-group list-unstyled';
-    /* cardUl.style.listStyle = "type none"; */
     cardUl.id = "cardlist";
 
     cardContainerDiv.appendChild(cardUl); 
@@ -105,12 +97,21 @@ function createCardsList(data){
 } 
  function createCards(title, description, imageurl){
     var cardLi = document.createElement('li');
-        cardLi.className = "card";
-        cardLi.style.display = "block";
+        if (title == "Jaws") {
+            cardLi.className = "card-current";
+            cardLi.style.display = "block";
+        } else {
+            cardLi.className = "card";
+            cardLi.style.display = "none";
+            
+        }
+        
+       
         cardLi.style.transformOrigin = "50% 99%";
 
     var cardDiv = document.createElement('div');
-        cardDiv.className ="flex-column rounded mh-100 mw-100";
+        cardDiv.id = "cardDIV";
+        cardDiv.className ="d-flex align-content-end flex-wrap rounded mh-100 mw-100";
         cardDiv.style.width="400px"; 
         cardDiv.style.height="500px";  
         cardDiv.style.backgroundImage = "url("+imageurl+")";
