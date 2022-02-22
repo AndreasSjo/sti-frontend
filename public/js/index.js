@@ -1,5 +1,6 @@
 
 var mainDiv = document.getElementById('app');
+    
    // mainDiv.style.border = "thick solid BLUE";
     mainDiv.className = "d-flex flex-column";
 
@@ -109,7 +110,8 @@ function createCardsList(data){
         cardLi.style.transformOrigin = "50% 99%";
 
     var cardDiv = document.createElement('div');
-        cardDiv.className ="flex-column rounded mh-100 mw-100";
+        cardDiv.id = "cardDIV";
+        cardDiv.className ="d-flex align-content-end flex-wrap rounded mh-100 mw-100";
         cardDiv.style.width="400px"; 
         cardDiv.style.height="500px";  
         cardDiv.style.backgroundImage = "url("+imageurl+")";
