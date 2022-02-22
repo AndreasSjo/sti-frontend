@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/login.css" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="\css\login.css" />
+
+    <title>Filmer Login</title>
   </head>
-  <body>
-    <div id="full-page">
-      <div id="header"></div>
-      <div id="sub-header"></div>
-      <div id="login"></div>
-      <div id="footer"></div>
-    </div>
 
-    <!-- <div id="mainDiv"></div> -->
-
+  <body class="text-center">
+    <main>
+      <form id="login-form">
+        <h3 class="mb-3" id="neon-text">Filmer</h3>
+        <input
+          type="text"
+          id="userName"
+          placeholder="Användarnamn"
+          class="form-control mb-3"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Lösenord"
+          class="form-control mb-3"
+        />
+        <button onclick="loginUser()">Logga in</button>
+        <button onclick="registerUser()">Registrera dig</button>
+      </form>
+    </main>
     <script>
-      /js/login.js
+      /js/login.js;
     </script>
   </body>
 </html>
