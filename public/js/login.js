@@ -1,18 +1,12 @@
-var fullPage = document.getElementById('full-page')
-var mainHeader = document.getElementById('header')
-var subHeader = document.getElementById('sub-header')
-var login = document.getElementById('login')
-var footer = document.getElementById('footer')
+const express = require("express");
 
-fullPage.appendChild(mainHeader)
-fullPage.appendChild(subHeader)
-fullPage.appendChild(login)
-fullPage.appendChild(footer)
+const app = express();
 
+app.get("/", (req, res) => {
+        res.send()
+     })
 
-/* var mainDiv = document.getElementById("mainDiv") */
-
-
-
-
+app.listen(5000, () => {
+    console.log("Server online")
+})
 
