@@ -16,6 +16,7 @@ var header = document.createElement('div');
     headerRow.appendChild(header);
 
  var imgRow = document.createElement('div');
+    imgRow.id = "cardDivRow"
     imgRow.className = "row justify-content-center mt-5 mb-5";
     //imgRow.style.border = "thick solid BLUE";
     mainDiv.appendChild(imgRow); 
@@ -32,6 +33,7 @@ var cardUl = document.createElement('ul');
     imgRow.appendChild(cardContainerDiv);
 
 var buttonRow = document.createElement('div');
+    buttonRow.id = "buttonRow";
     buttonRow.className = "row justify-content-center ";
     //buttonRow.style.border = "thick solid BLACK";
     mainDiv.appendChild(buttonRow); 
@@ -39,11 +41,11 @@ var buttonRow = document.createElement('div');
 
 
 var noBtn  = document.createElement('button');
+    noBtn.addEventListener('click', animatecard);
     noBtn.className = "btn btn-lg btn-danger m-3 rounded-circle";
 
 var noBtnIco = document.createElement('i');
     noBtnIco.className="fa fa-regular fa-times"
-
     noBtn.appendChild(noBtnIco);
     noBtn.id = 'but-no';
     buttonRow.appendChild(noBtn); 
@@ -59,19 +61,18 @@ var maybeBtnIco = document.createElement('i');
     buttonRow.appendChild(maybeBtn); 
 
 var okBtn = document.createElement('button');
+    okBtn.addEventListener('click', animatecard);
     okBtn.className = "btn btn-lg btn-success m-3 rounded-circle";
     okBtn.id = 'but-ok'
-    okBtn.onclick = okOnClick;
 
 var okBtnIco = document.createElement('i');
     okBtnIco.className="fa fa-regular fa-check"
     
     okBtn.appendChild(okBtnIco);
-    okBtn.id = 'okBtn';
     buttonRow.appendChild(okBtn);
     age();
 
-function okOnClick(){
+function buttonOnClick(){
 
 }
 
@@ -95,14 +96,15 @@ function createCardsList(data){
     document.getElementById("cardlist").appendChild(createCards(data[2].title, data[2].description, data[2].imageurl));
     document.getElementById("cardlist").appendChild(createCards(data[3].title, data[3].description, data[3].imageurl));
 } 
+
+
  function createCards(title, description, imageurl){
     var cardLi = document.createElement('li');
         if (title == "Jaws") {
             cardLi.className = "card-current";
-            cardLi.style.display = "block";
+
         } else {
             cardLi.className = "card";
-            cardLi.style.display = "none";
             
         }
         
@@ -145,3 +147,57 @@ function createCardsList(data){
     cardUl.appendChild(cardLi);
     return cardLi;
 } 
+
+
+ function animatecard(ev) {
+    var t = ev.target;
+    if (t.id === 'but-no') {
+        cardDivRow.classList.add('nope');
+      console.log("no btn working");
+    }
+    if (t.id === 'but-ok') {
+        cardDivRow.classList.add('yes');
+      console.log("yes btn working");
+    }
+  }
+  
+ 
+  function animationdone(ev) {
+    console.log("animation done function")
+    // get the container
+    var origin = document.getElementById("cardDivRow");
+   
+    // remove the appropriate class
+    // depending on the animation name
+    if (ev.animationName === 'yay') {
+      origin.classList.remove('yes');
+    }
+    if (ev.animationName === 'nope') {
+      origin.classList.remove('nope');
+    }
+   
+    // if any of the card events have 
+    // ended…
+    if (ev.animationName === 'nope' ||
+        ev.animationName === 'yay') {
+   
+    // remove the first card in the element
+      origin.querySelector('.card-current').remove();
+   
+    // if there are no cards left, do nothing
+      if (!origin.querySelector('.card')) {
+        // no more cards left - 
+        // TODO other functionality
+      } else {
+   
+    // otherwise shift the 'current' class to 
+    // the next card 
+        origin.querySelector('.card').classList.replace('card','card-current');
+      }
+    }
+  }
+  document.getElementById('app').addEventListener(
+    'animationend', animationdone
+  ); 
+
+  
