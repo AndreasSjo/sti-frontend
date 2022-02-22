@@ -1,0 +1,30 @@
+body{
+    background:linear-gradient(0deg, rgba(0,0,0,0.9002320185614849) 0%, rgba(205,9,9,1) 32%, rgba(0,0,0,1) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+html, body {
+    margin: 0;
+    height: 100%;
+}
+#maybeBtn:hover ~ #imgJaws{
+    height: 100px;
+}
+
+@keyframes yay {
+    from {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotate(40deg) translateY(-80px);
+      opacity: 0;
+    }
+  }
+
+#movieImg {
+    transform-origin: 50% 99%;
+}
+#okBtn #movieImg{
+    animation: yay 0.7s ease-out;
+}
