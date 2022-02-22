@@ -53,7 +53,7 @@ var noBtnIco = document.createElement('i');
     noBtnIco.className="fa fa-regular fa-times"
 
     noBtn.appendChild(noBtnIco);
-    noBtn.id = 'noBtn';
+    noBtn.id = 'but-no';
     buttonRow.appendChild(noBtn); 
 
 var maybeBtn  = document.createElement('button');
@@ -63,11 +63,12 @@ var maybeBtnIco = document.createElement('i');
     maybeBtnIco.className="fa fa-thin fa-meh"
 
     maybeBtn.appendChild(maybeBtnIco);
-    maybeBtn.id = 'maybeBtn';
+    maybeBtn.id = 'but-maybe';
     buttonRow.appendChild(maybeBtn); 
 
 var okBtn = document.createElement('button');
     okBtn.className = "btn btn-lg btn-success m-3 rounded-circle";
+    okBtn.id = 'but-ok'
     okBtn.onclick = okOnClick;
 
 var okBtnIco = document.createElement('i');
@@ -104,35 +105,39 @@ function createCardsList(data){
 } 
  function createCards(title, description, imageurl){
     var cardLi = document.createElement('li');
+        cardLi.className = "card";
+        cardLi.style.display = "block";
+        cardLi.style.transformOrigin = "50% 99%";
+
     var cardDiv = document.createElement('div');
-    cardDiv.className ="flex-column rounded mh-100 mw-100";
-    cardDiv.style.width="400px"; 
-    cardDiv.style.height="500px";  
-    cardDiv.style.backgroundImage = "url("+imageurl+")";
-      cardDiv.style.backgroundSize = "400px 500px";  
+        cardDiv.className ="flex-column rounded mh-100 mw-100";
+        cardDiv.style.width="400px"; 
+        cardDiv.style.height="500px";  
+        cardDiv.style.backgroundImage = "url("+imageurl+")";
+        cardDiv.style.backgroundSize = "400px 500px";  
 
     var cardHeaderRow = document.createElement('div');
         cardHeaderRow.className = "row justify-content-flex-start";
-        cardDiv.appendChild(cardHeaderRow);
+            cardDiv.appendChild(cardHeaderRow);
 
     var titleHeader = document.createElement('div');
-        titleHeader.className ="h1 col-12 mx-2";
+        titleHeader.className ="h1 col-12 mx-2 text-white";
         titleHeader.innerHTML = title;
-        cardHeaderRow.appendChild(titleHeader);
+            cardHeaderRow.appendChild(titleHeader);
     
     var cardDescRow = document.createElement('div');
         cardDescRow.className = "row justify-content-flex-start";
-        cardDiv.appendChild(cardDescRow);
+            cardDiv.appendChild(cardDescRow);
 
     var filmDesc = document.createElement('div');
         filmDesc.className = "col-12 mx-1";
+
     var filmDescP = document.createElement("p");
-        filmDescP.className = 'font-weight-bold';
+        filmDescP.className = 'font-weight-bold text-white';
+
     var node = document.createTextNode(description);
         filmDescP.appendChild(node);
-        filmDesc.className = "col-12 mx-1";
         filmDesc.appendChild(filmDescP)
-        /* filmDesc.innerHTML = description;  */
         cardDescRow.appendChild(filmDesc);
     
     cardLi.appendChild(cardDiv);

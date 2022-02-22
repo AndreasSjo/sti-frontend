@@ -7,9 +7,7 @@ html, body {
     margin: 0;
     height: 100%;
 }
-#maybeBtn:hover ~ #imgJaws{
-    height: 100px;
-}
+
 
 @keyframes yay {
     from {
@@ -22,9 +20,14 @@ html, body {
     }
   }
 
-#movieImg {
-    transform-origin: 50% 99%;
-}
-#okBtn #movieImg{
-    animation: yay 0.7s ease-out;
-}
+@keyframes nope {
+    from {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotate(-40deg) translateY(-80px);
+      opacity: 0;
+    }
+  }
+
