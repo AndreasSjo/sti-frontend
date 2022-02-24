@@ -22,7 +22,10 @@ html, body {
   .1vw 0vw   5vw #e50b0b, .2vw 0vw  20vw #e50b0b, .4vw 0vw  10vw #e50b0b,
   .1vw 0vw  10vw #e50b0b, .2vw 0vw  30vw #e50b0b, .4vw 0vw  10vw #e50b0b;
 }
-
+@font-face {
+  font-family: neon;
+  src: url(BadScript-Regular.ttf);
+}
 #cardDIV{
     box-shadow:
     0 0 0.1vw  0.4vw #fff7f7,   

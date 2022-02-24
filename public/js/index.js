@@ -5,7 +5,7 @@ var mainDiv = document.getElementById('app');
     mainDiv.className = "d-flex flex-column";
 
 var headerRow = document.createElement('div');
-    headerRow.className = "row justify-content-center mt-0";
+    headerRow.className = "row justify-content-center mt-3";
     //headerRow.style.border = "thick solid RED";
     mainDiv.appendChild(headerRow); 
 
@@ -76,16 +76,17 @@ function buttonOnClick(){
 
 }
 
- function age(){
+
+  function age(){
     var xhr = new XMLHttpRequest()
-    xhr.open("GET", "/js/data.json")
+    xhr.open("GET", "http://localhost:3001/")
     xhr.onload = function(){
+        console.log(this.response)
         var data = JSON.parse(this.response)
         createCardsList(data)
     }
     xhr.send()
-}
-
+}  
 function createCardsList(data){
     var cardRow = document.createElement('div');
     cardRow.className = "row justify-content-center mt-5 mb-5";
@@ -96,7 +97,6 @@ function createCardsList(data){
     document.getElementById("cardlist").appendChild(createCards(data[2].title, data[2].description, data[2].imageurl));
     document.getElementById("cardlist").appendChild(createCards(data[3].title, data[3].description, data[3].imageurl));
 } 
-
 
  function createCards(title, description, imageurl){
     var cardLi = document.createElement('li');
