@@ -3,12 +3,21 @@ if (jwt != null) {
     window.location.href = './index.html'
 }
 
+/* const express = require("express")
+const app = express() */
+
+/* app.get("/users", (req ,res)=>{
+    headers={"http_status":200, "cache-control":  "no-cache"}
+    res.sendFile(path.join(__dirname, '/users.json'));
+    
+ }) */
+
 function login(){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", /* Länk till backend */)
+    xhttp.open("POST", "http://localhost:3001/users") /* Länk till backend */
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({
         "username": username,
@@ -19,12 +28,12 @@ function login(){
             const objects = JSON.parse(this.responseText);
             console.log(objects);
             if (objects['status'] == 'ok') {
-                localStorage.setItem("jwt", objects['accessToken']);
-                Swal.fire({                             /*Swal används för att göra pop-up vid login  */
+                localStorage.setItem("jwt", objects['accessToken'])
+                Swal.fire({
                     text: objects['message'],
                     icon: 'success',
-                    confirmButtonText: 'Okej!'
-                }).then((result) => {
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
                     if(result.isConfirmed) {
                         window.location.href ='./index.html';
                     }
