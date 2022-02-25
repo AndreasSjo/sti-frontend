@@ -79,7 +79,7 @@ function buttonOnClick(){
 
   function age(){
     var xhr = new XMLHttpRequest()
-    xhr.open("GET", "http://localhost:3001/")
+    xhr.open("GET", "http://localhost:3001/movies")
     xhr.onload = function(){
         console.log(this.response)
         var data = JSON.parse(this.response)
@@ -186,8 +186,7 @@ function createCardsList(data){
    
     // if there are no cards left, do nothing
       if (!origin.querySelector('.card')) {
-        // no more cards left - 
-        // TODO other functionality
+        showSummary();
       } else {
    
     // otherwise shift the 'current' class to 
