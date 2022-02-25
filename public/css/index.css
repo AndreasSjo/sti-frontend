@@ -1,5 +1,5 @@
 body{
-    background:linear-gradient(0deg, rgba(0,0,0,0.9002320185614849) 0%, rgba(205,9,9,1) 32%, rgba(0,0,0,1) 100%);
+    background-image: url('https://images.unsplash.com/photo-1507752533523-5186b0bc4c43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -7,18 +7,35 @@ html, body {
     margin: 0;
     height: 100%;
 }
+#headerMain{
+    font-family: neon;
+    font: "BadScript-Regular";
+    font-size: 5rem;
+    color: #ffd8d8;
 
-
-@keyframes yay {
-    from {
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    to {
-      transform: rotate(40deg) translateY(-80px);
-      opacity: 0;
-    }
-  }
+    text-shadow: 
+  .1vw 0vw .25vw #ffd8d8, .2vw 0vw .25vw #ffd8d8, .4vw 0vw .25vw #ffd8d8, 
+  .1vw 0vw   0vw #f25757, .2vw 0vw   0vw #f25757, .4vw 0vw   0vw #f25757,
+  .1vw 0vw  .1vw #f25757, .2vw 0vw  .1vw #f25757, .4vw 0vw  .1vw #f25757,
+  .1vw 0vw   2vw #f25757, .2vw 0vw   2vw #f25757, .4vw 0vw   2vw #f25757, 
+  .1vw 0vw   1vw #e50b0b, .2vw 0vw   1vw #e50b0b, .4vw 0vw   5vw #e50b0b, 
+  .1vw 0vw   5vw #e50b0b, .2vw 0vw  20vw #e50b0b, .4vw 0vw  10vw #e50b0b,
+  .1vw 0vw  10vw #e50b0b, .2vw 0vw  30vw #e50b0b, .4vw 0vw  10vw #e50b0b;
+}
+@font-face {
+  font-family: neon;
+  src: url(BadScript-Regular.ttf);
+}
+#cardDIV{
+    box-shadow:
+    0 0 0.1vw  0.4vw #fff7f7,   
+    0 0 0.4vw  0.6vw #e97272, 
+    0 0   4vw  0.4vw #e50b0b,
+    inset 0 0 1.5vw  0.4vw #e50b0b,
+    inset 0 0 0.4vw  0.2vw #e97272,
+    inset 0 0 0.5vw  0.2vw #fff7f7;
+    border-radius: 1.5rem;
+}
 
 @keyframes nope {
     from {
@@ -31,3 +48,27 @@ html, body {
     }
   }
 
+  @keyframes yay {
+    from {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotate(40deg) translateY(-80px);
+      opacity: 0;
+    }
+  }
+
+  #cardDivRow.yes .card-current{
+    animation: yay 0.7s ease-out;
+  }
+
+  #cardDivRow.nope .card-current{
+    animation: nope 0.7s ease-out;
+}
+.list .card{
+    display: none;
+}
+.list .card-current{
+    display: block;
+}
