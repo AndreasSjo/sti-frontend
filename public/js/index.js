@@ -197,6 +197,8 @@ function createCardsList(data){
    
     // if there are no cards left showSummary
       if (!origin.querySelector('.card')) {
+          mainDiv.removeChild(cardDivRow);
+          mainDiv.removeChild(buttonRow);
         showSummary();
       } else {
    
@@ -219,42 +221,105 @@ function createCardsList(data){
   }));
   }
 
-
   function showSummary(){
-    const usernames = getUsername();
-    console.log(usernames);
-    getRatings();
+    var tableDiv = document.createElement('div');
+    tableDiv.className ="d-flex justify-content-center rounded mh-100 mw-100";
+   var aTable = document.createElement('table');
+   aTable.className = "table table-bordered"
+   aTable.id = "aTable";
+   aTable.className = "text-danger bg-dark";
+   aTable.style.width="50vh"; 
+   aTable.style.height="50vh"; 
 
-    var summaryRow = document.createElement('div');
-        summaryRow.className = "row justify-space-around mt-5 mb-5";
+   var tableHeader = document.createElement('thead');
+   var tableRow1 = document.createElement('tr');
+   var thMovies = document.createElement('th');
+        thMovies.className = "col";
+    tableRow1.appendChild(thMovies);
+    tableHeader.appendChild(tableRow1);
+    aTable.appendChild(tableHeader);
+
+    var tableBody = document.createElement('tbody');
     
-    var firstCol = document.createElement('div');
-        firstCol.style.border = "thick solid BLUE";
-        firstCol.id = 'sFirstCol';
-        firstCol.className = "col-lg-4"
-            summaryRow.appendChild(firstCol);
-        
-    var userCol1 = document.createElement('div');
-        userCol1.className = "col-lg-4";
-        userCol1.innerHTML = usernames[1].username;
+    aTable.appendChild(tableBody);
+    tableDiv.appendChild(aTable);
 
+    mainDiv.appendChild(tableDiv);
 
-    function getUsername(){
-            var xhr = new XMLHttpRequest()
-            xhr.open("GET", "http://localhost:3001/users")
-            xhr.onload = function(){
-                var data = JSON.parse(this.response)
-                console.log(usernames);
-                return data;
+/***********Retriving ratings ********************/
+/*     var xhrRating = new XMLHttpRequest()
+    xhrRating.open("GET", "http://localhost:3001/ratings")
+    xhrRating.onload = function(){
+        var ratings = JSON.parse(this.response)
+        for (let i = 0; i < userData.length; i++){
+            var curUser = userData[i].id;
+            for (let j = 0; j < ratings.length; j++){
+                if(ratings[j].userId === curUser){
+                  var rating = ratings[j].rating;
+                  document.getElementById(ratings[i].title).appendChild('3') 
+                }
             }
-            xhr.send()   
-        }     
-    function getRatings(){
-        var xhr = new XMLHttpRequest()
-        xhr.open("GET", "http://localhost:3001/ratings")
-        xhr.onload = function(){
-            var ratings = JSON.parse(this.response)
         }
-        xhr.send()
-    }  
-  }
+    }
+    xhrRating.send() */
+
+/***********Retriving movie titles ********************/
+    var xhrMovies = new XMLHttpRequest()
+    xhrMovies.open("GET", "http://localhost:3001/movies")
+    xhrMovies.onload = function(){
+        var moviesData = JSON.parse(this.response)
+        for (let i = 0; i < moviesData.length; i++){
+                var thTitle = document.createElement('th');
+                thTitle.className = "col";
+                thTitle.innerHTML = moviesData[i].title;
+                tableRow1.appendChild(thTitle);
+        }
+    }
+    xhrMovies.send()
+
+/***********Retriving usernames ********************/
+    var xhr = new XMLHttpRequest()
+    
+        xhr.open("GET", "http://localhost:3001/users")
+        xhr.onload = function(){
+            var userData = JSON.parse(this.response);
+            for (let i = 0; i < 4; i++) {
+ 
+            var tRow = document.createElement('tr');
+            tRow.id = userData[i].username;
+            var tHead = document.createElement('th');
+                tHead.innerHTML = userData[i].username;
+                    tRow.appendChild(tHead);
+                tableBody.appendChild(tRow);
+
+            }
+            var xhrRating = new XMLHttpRequest()
+            xhrRating.open("GET", "http://localhost:3001/ratings")
+            xhrRating.onload = function(){
+                var ratings = JSON.parse(this.response)
+
+                for (let i = 0; i < userData.length; i++){
+                    var curUser = userData[i].id;
+                      
+                    for (let j = 0; j < ratings.length; j++){
+                        
+                        if(ratings[j].userId = curUser){
+                          var thisRating = ratings[j].rating;
+                          console.log(ratings[j].userId);
+                          console.log(ratings[j].title);
+                          var aTd = document.createElement('td');
+                            aTd.innerHTML = ratings[j].rating;
+                         var rowInsertInto = document.getElementById(userData[i].username);
+                            rowInsertInto.appendChild(aTd);
+                        }
+
+                    }
+                }
+            }
+            xhrRating.send()
+        }
+    xhr.send()  
+    
+
+
+}    
