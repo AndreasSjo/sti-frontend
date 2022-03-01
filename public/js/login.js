@@ -9,11 +9,7 @@ function login(){
     const password = document.getElementById("password").value;
     
     const xhttp = new XMLHttpRequest();
-<<<<<<< HEAD
-    xhttp.open("POST", "/users.json")
-=======
     xhttp.open("POST", "http://localhost:3001/users"); /* Länk till backend */
->>>>>>> f39dd600dbb46ee67a3da8beb86ba28098cc74bd
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send (JSON.stringify({
         "username": username,
