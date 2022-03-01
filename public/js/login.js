@@ -19,6 +19,7 @@ function login(){
         if (this.readyState == 4) {
             const objects = JSON.parse(this.responseText);
             console.log(objects);
+            console.log(objects[4].status);
             if (objects['status'] == 'ok') {
                 localStorage.setItem("jwt", objects['accessToken'])
                 Swal.fire({
@@ -70,6 +71,8 @@ function age(){
 */
 
 /* const express = require("express")
+
+
 const app = express()
 
 app.get("/users", (req ,res)=>{
