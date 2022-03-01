@@ -3,14 +3,19 @@ if (jwt != null) {
     window.location.href = './index.html'
 }
 
+
 function login(){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-
+    
     const xhttp = new XMLHttpRequest();
+<<<<<<< HEAD
     xhttp.open("POST", "/users.json")
+=======
+    xhttp.open("POST", "http://localhost:3001/users"); /* Länk till backend */
+>>>>>>> f39dd600dbb46ee67a3da8beb86ba28098cc74bd
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(JSON.stringify({
+    xhttp.send (JSON.stringify({
         "username": username,
         "password": password
     }));
@@ -19,11 +24,11 @@ function login(){
             const objects = JSON.parse(this.responseText);
             console.log(objects);
             if (objects['status'] == 'ok') {
-                localStorage.setItem("jwt", objects['accessToken']);
-                Swal.fire({                             /*Swal används för att göra pop-up vid login  */
+                localStorage.setItem("jwt", objects['accessToken'])
+                Swal.fire({
                     text: objects['message'],
                     icon: 'success',
-                    confirmButtonText: 'Okej!'
+                    confirmButtonText: 'OK'
                 }).then((result) => {
                     if(result.isConfirmed) {
                         window.location.href ='./index.html';
@@ -47,8 +52,8 @@ function login(){
 const app = express();
 
 app.get("/", (req, res) => {
-        res.send()
-     })
+    res.send()
+})
 
 app.listen(5000, () => {
     console.log("Server online")
@@ -66,4 +71,13 @@ function age(){
     xhr.send()
 }
 
- */
+*/
+
+/* const express = require("express")
+const app = express()
+
+app.get("/users", (req ,res)=>{
+    headers={"http_status":200, "cache-control":  "no-cache"}
+    res.sendFile(path.join(__dirname, '/users.json'));
+    
+ }) */

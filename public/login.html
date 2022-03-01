@@ -23,8 +23,8 @@
   </head>
 
   <body class="text-center">
-    <main>
-      <form id="login-form">
+    <main class="form-signin">
+      <form onsubmit="return login()" id="login-form">
         <h3 class="mb-3" id="neon-text">Filmer</h3>
         <input
           type="text"
@@ -38,9 +38,14 @@
           placeholder="Lösenord"
           class="form-control mb-3"
         />
-        <button onclick="loginUser()">Logga in</button>
+        <button type="submit">Logga in</button>
         <button onclick="registerUser()">Registrera dig</button>
       </form>
     </main>
+<<<<<<< HEAD
+=======
+    <script src="/js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+>>>>>>> f39dd600dbb46ee67a3da8beb86ba28098cc74bd
   </body>
 </html>
