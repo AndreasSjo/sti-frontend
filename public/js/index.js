@@ -1,3 +1,7 @@
+// TODO personId should be logged in user
+const personId = '1';
+
+
 
 var mainDiv = document.getElementById('app');
     
@@ -40,6 +44,7 @@ var buttonRow = document.createElement('div');
 
 
 
+
 var noBtn  = document.createElement('button');
     noBtn.addEventListener('click', animatecard);
     noBtn.className = "btn btn-lg btn-danger m-3 rounded-circle";
@@ -72,16 +77,10 @@ var okBtnIco = document.createElement('i');
     buttonRow.appendChild(okBtn);
     age();
 
-function buttonOnClick(){
-
-}
-
-
   function age(){
     var xhr = new XMLHttpRequest()
     xhr.open("GET", "http://localhost:3001/movies")
     xhr.onload = function(){
-        console.log(this.response)
         var data = JSON.parse(this.response)
         createCardsList(data)
     }
@@ -108,7 +107,6 @@ function createCardsList(data){
             
         }
         
-       
         cardLi.style.transformOrigin = "50% 99%";
 
     var cardDiv = document.createElement('div');
@@ -124,6 +122,7 @@ function createCardsList(data){
             cardDiv.appendChild(cardHeaderRow);
 
     var titleHeader = document.createElement('div');
+        titleHeader.id = "titleHeader";
         titleHeader.className ="h1 col-12 mx-2 text-white";
         titleHeader.innerHTML = title;
             cardHeaderRow.appendChild(titleHeader);
@@ -153,17 +152,29 @@ function createCardsList(data){
     var t = ev.target;
     if (t.id === 'but-no') {
         cardDivRow.classList.add('nope');
-      console.log("no btn working");
+        // If button no is pressed get the current-card title
+        const curCard = cardDivRow.getElementsByClassName('card-current');
+        var thisTitle = document.getElementById('titleHeader').innerHTML;
+        // Pass the title, personid and rating (1 = ok, 2 = maybe, 3 = no) to update json file
+        updateRatings(thisTitle, personId, '3');
+        console.log(thisTitle);
+
     }
     if (t.id === 'but-ok') {
         cardDivRow.classList.add('yes');
-      console.log("yes btn working");
+        // If button ok is pressed get the current-card title
+        const curCard = cardDivRow.getElementsByClassName('card-current');
+        var thisTitle = document.getElementById('titleHeader').innerHTML;
+        // Pass the title, personid and rating (1 = ok, 2 = maybe, 3 = no) to update json file
+        updateRatings(thisTitle, personId, '1');
+        console.log(thisTitle);
+        
     }
   }
   
  
   function animationdone(ev) {
-    console.log("animation done function")
+
     // get the container
     var origin = document.getElementById("cardDivRow");
    
@@ -177,14 +188,14 @@ function createCardsList(data){
     }
    
     // if any of the card events have 
-    // ended…
+    // ended
     if (ev.animationName === 'nope' ||
         ev.animationName === 'yay') {
    
     // remove the first card in the element
       origin.querySelector('.card-current').remove();
    
-    // if there are no cards left, do nothing
+    // if there are no cards left showSummary
       if (!origin.querySelector('.card')) {
         showSummary();
       } else {
@@ -199,4 +210,51 @@ function createCardsList(data){
     'animationend', animationdone
   ); 
 
-  
+  function updateRatings(title, userId, rating){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "http://localhost:3001/ratings");
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify({ 
+    "title": title, "userId": userId, "rating": rating 
+  }));
+  }
+
+
+  function showSummary(){
+    const usernames = getUsername();
+    console.log(usernames);
+    getRatings();
+
+    var summaryRow = document.createElement('div');
+        summaryRow.className = "row justify-space-around mt-5 mb-5";
+    
+    var firstCol = document.createElement('div');
+        firstCol.style.border = "thick solid BLUE";
+        firstCol.id = 'sFirstCol';
+        firstCol.className = "col-lg-4"
+            summaryRow.appendChild(firstCol);
+        
+    var userCol1 = document.createElement('div');
+        userCol1.className = "col-lg-4";
+        userCol1.innerHTML = usernames[1].username;
+
+
+    function getUsername(){
+            var xhr = new XMLHttpRequest()
+            xhr.open("GET", "http://localhost:3001/users")
+            xhr.onload = function(){
+                var data = JSON.parse(this.response)
+                console.log(usernames);
+                return data;
+            }
+            xhr.send()   
+        }     
+    function getRatings(){
+        var xhr = new XMLHttpRequest()
+        xhr.open("GET", "http://localhost:3001/ratings")
+        xhr.onload = function(){
+            var ratings = JSON.parse(this.response)
+        }
+        xhr.send()
+    }  
+  }
