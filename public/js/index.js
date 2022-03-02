@@ -223,11 +223,10 @@ function createCardsList(data){
 
   function showSummary(){
     var tableDiv = document.createElement('div');
-    tableDiv.className ="d-flex justify-content-center rounded mh-100 mw-100";
+    tableDiv.className ="d-flex justify-content-center  mh-100 mw-100";
    var aTable = document.createElement('table');
-   aTable.className = "table table-bordered"
+   aTable.className = "table table-bordered rounded bg-opacity-50 text-danger bg-dark"
    aTable.id = "aTable";
-   aTable.className = "text-danger bg-dark";
    aTable.style.width="50vh"; 
    aTable.style.height="50vh"; 
 
@@ -278,7 +277,7 @@ function createCardsList(data){
     xhrMovies.send()
 
 /***********Retriving usernames ********************/
-    var xhr = new XMLHttpRequest()
+/*     var xhr = new XMLHttpRequest()
     
         xhr.open("GET", "http://localhost:3001/users")
         xhr.onload = function(){
@@ -312,8 +311,67 @@ function createCardsList(data){
                          var rowInsertInto = document.getElementById(userData[i].username);
                             rowInsertInto.appendChild(aTd);
                         }
+                        else{
+                            continue;
+                        }
 
                     }
+                }
+            }
+            xhrRating.send()
+        }
+    xhr.send()   */
+
+
+    /***********Retriving usernames ********************/
+    var xhr = new XMLHttpRequest()
+    
+        xhr.open("GET", "http://localhost:3001/users")
+        xhr.onload = function(){
+            var userData = JSON.parse(this.response);
+            for (let i = 0; i < 4; i++) {
+ 
+            var tRow = document.createElement('tr');
+            tRow.id = userData[i].username;
+            var tHead = document.createElement('th');
+                tHead.innerHTML = userData[i].username;
+                    tRow.appendChild(tHead);
+                tableBody.appendChild(tRow);
+
+            }
+            var xhrRating = new XMLHttpRequest()
+            xhrRating.open("GET", "http://localhost:3001/ratings")
+            xhrRating.onload = function(){
+                var ratings = JSON.parse(this.response)
+
+                for (let i = 0; i < userData.size; i++){
+                    var curUser = userData[i].id;
+                      
+
+                        ratings.forEach(obj => {
+                            Object.entries(obj).forEach(([key, value]) => {
+                                if(key= curUser ){
+                                    var aTd = document.createElement('td');
+                                    aTd.innerHTML = value;
+                                 var rowInsertInto = document.getElementById(userData[i].username);
+                                    rowInsertInto.appendChild(aTd); 
+
+
+                                }
+                            });
+                            console.log('-------------------');
+                        });
+/* 
+                          var thisRating = ratings[j].rating;
+                          console.log(ratings[j].userId);
+                          console.log(ratings[j].title);
+                          var aTd = document.createElement('td');
+                            aTd.innerHTML = ratings[j].rating;
+                         var rowInsertInto = document.getElementById(userData[i].username);
+                            rowInsertInto.appendChild(aTd); */
+                   
+
+                    
                 }
             }
             xhrRating.send()
