@@ -361,14 +361,14 @@ function createCardsList(data){
                             });
                             console.log('-------------------');
                         });
-/* 
+ 
                           var thisRating = ratings[j].rating;
                           console.log(ratings[j].userId);
                           console.log(ratings[j].title);
                           var aTd = document.createElement('td');
                             aTd.innerHTML = ratings[j].rating;
                          var rowInsertInto = document.getElementById(userData[i].username);
-                            rowInsertInto.appendChild(aTd); */
+                            rowInsertInto.appendChild(aTd); 
                    
 
                     
