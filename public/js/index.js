@@ -291,9 +291,23 @@ function createCardsList(data){
                         
                         if(ratings[j].userId == curUser){
                           var aTd = document.createElement('td');
-                            aTd.innerHTML = ratings[j].rating;
-                         var rowInsertInto = document.getElementById(userData[i].username);
-                            rowInsertInto.appendChild(aTd);
+                            if(ratings[j].rating == '1'){
+                                aTd.innerHTML = "Yes"
+                                var rowInsertInto = document.getElementById(userData[i].username);
+                                rowInsertInto.appendChild(aTd);
+                            }
+                            else if(ratings[j].rating == '2'){
+                                aTd.innerHTML = "Maybe"
+                                var rowInsertInto = document.getElementById(userData[i].username);
+                                rowInsertInto.appendChild(aTd);
+                            }
+                            else{
+                                aTd.innerHTML = "No"
+                                var rowInsertInto = document.getElementById(userData[i].username);
+                                rowInsertInto.appendChild(aTd);
+                            } 
+                            
+                         
                         }
                         else{
                             continue;
@@ -309,3 +323,33 @@ function createCardsList(data){
 
 
 }    
+
+
+
+/*
+var xhrRating = new XMLHttpRequest()
+xhrRating.open("GET", "http://localhost:3001/ratings")
+xhrRating.onload = function(){
+    var ratings = JSON.parse(this.response)
+
+    for (let i = 0; i < userData.length; i++){
+        var curUser = userData[i].id;
+          
+        for (let j = 0; j < ratings.length; j++){
+            
+            if(ratings[j].userId == curUser){
+              var aTd = document.createElement('td');
+                aTd.innerHTML = ratings[j].rating;
+             var rowInsertInto = document.getElementById(userData[i].username);
+                rowInsertInto.appendChild(aTd);
+            }
+            else{
+                continue;
+            }
+
+        }
+    }
+}
+xhrRating.send()
+}
+xhr.send()   */
