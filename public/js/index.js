@@ -284,13 +284,12 @@ function createCardsList(data){
             xhrRating.onload = function(){
                 var ratings = JSON.parse(this.response)
 
-                for (let i = 0; i < 4; i++){
+                for (let i = 0; i < userData.length; i++){
                     var curUser = userData[i].id;
                       
-                    for (let j = 0; j < 4; j++){
+                    for (let j = 0; j < ratings.length; j++){
                         
-                        if(ratings[j].userId = curUser){
-                          var thisRating = ratings[j].rating;
+                        if(ratings[j].userId == curUser){
                           var aTd = document.createElement('td');
                             aTd.innerHTML = ratings[j].rating;
                          var rowInsertInto = document.getElementById(userData[i].username);
