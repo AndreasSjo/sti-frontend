@@ -212,14 +212,14 @@ function createCardsList(data){
     'animationend', animationdone
   ); 
 
-  function updateRatings(title, userId, rating){
+  /* function updateRatings(title, userId, rating){
     const xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "http://localhost:3001/ratings");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({ 
     "title": title, "userId": userId, "rating": rating 
   }));
-  }
+  } */
 
   function showSummary(){
     var tableDiv = document.createElement('div');
@@ -245,22 +245,8 @@ function createCardsList(data){
 
     mainDiv.appendChild(tableDiv);
 
-/***********Retriving ratings ********************/
-/*     var xhrRating = new XMLHttpRequest()
-    xhrRating.open("GET", "http://localhost:3001/ratings")
-    xhrRating.onload = function(){
-        var ratings = JSON.parse(this.response)
-        for (let i = 0; i < userData.length; i++){
-            var curUser = userData[i].id;
-            for (let j = 0; j < ratings.length; j++){
-                if(ratings[j].userId === curUser){
-                  var rating = ratings[j].rating;
-                  document.getElementById(ratings[i].title).appendChild('3') 
-                }
-            }
-        }
-    }
-    xhrRating.send() */
+
+
 
 /***********Retriving movie titles ********************/
     var xhrMovies = new XMLHttpRequest()
@@ -277,7 +263,7 @@ function createCardsList(data){
     xhrMovies.send()
 
 /***********Retriving usernames ********************/
-/*     var xhr = new XMLHttpRequest()
+     var xhr = new XMLHttpRequest()
     
         xhr.open("GET", "http://localhost:3001/users")
         xhr.onload = function(){
@@ -292,20 +278,19 @@ function createCardsList(data){
                 tableBody.appendChild(tRow);
 
             }
+            /***********Retriving ratings ********************/
             var xhrRating = new XMLHttpRequest()
             xhrRating.open("GET", "http://localhost:3001/ratings")
             xhrRating.onload = function(){
                 var ratings = JSON.parse(this.response)
 
-                for (let i = 0; i < userData.length; i++){
+                for (let i = 0; i < 4; i++){
                     var curUser = userData[i].id;
                       
-                    for (let j = 0; j < ratings.length; j++){
+                    for (let j = 0; j < 4; j++){
                         
                         if(ratings[j].userId = curUser){
                           var thisRating = ratings[j].rating;
-                          console.log(ratings[j].userId);
-                          console.log(ratings[j].title);
                           var aTd = document.createElement('td');
                             aTd.innerHTML = ratings[j].rating;
                          var rowInsertInto = document.getElementById(userData[i].username);
@@ -320,63 +305,7 @@ function createCardsList(data){
             }
             xhrRating.send()
         }
-    xhr.send()   */
-
-
-    /***********Retriving usernames ********************/
-    var xhr = new XMLHttpRequest()
-    
-        xhr.open("GET", "http://localhost:3001/users")
-        xhr.onload = function(){
-            var userData = JSON.parse(this.response);
-            for (let i = 0; i < 4; i++) {
- 
-            var tRow = document.createElement('tr');
-            tRow.id = userData[i].username;
-            var tHead = document.createElement('th');
-                tHead.innerHTML = userData[i].username;
-                    tRow.appendChild(tHead);
-                tableBody.appendChild(tRow);
-
-            }
-            var xhrRating = new XMLHttpRequest()
-            xhrRating.open("GET", "http://localhost:3001/ratings")
-            xhrRating.onload = function(){
-                var ratings = JSON.parse(this.response)
-
-                for (let i = 0; i < userData.size; i++){
-                    var curUser = userData[i].id;
-                      
-
-                        ratings.forEach(obj => {
-                            Object.entries(obj).forEach(([key, value]) => {
-                                if(key= curUser ){
-                                    var aTd = document.createElement('td');
-                                    aTd.innerHTML = value;
-                                 var rowInsertInto = document.getElementById(userData[i].username);
-                                    rowInsertInto.appendChild(aTd); 
-
-
-                                }
-                            });
-                            console.log('-------------------');
-                        });
- 
-                          var thisRating = ratings[j].rating;
-                          console.log(ratings[j].userId);
-                          console.log(ratings[j].title);
-                          var aTd = document.createElement('td');
-                            aTd.innerHTML = ratings[j].rating;
-                         var rowInsertInto = document.getElementById(userData[i].username);
-                            rowInsertInto.appendChild(aTd); 
-                   
-
-                    
-                }
-            }
-            xhrRating.send()
-        }
-    xhr.send()  
+    xhr.send()   
     
 
 
