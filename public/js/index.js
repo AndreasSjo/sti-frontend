@@ -156,9 +156,8 @@ function createCardsList(data){
         const curCard = cardDivRow.getElementsByClassName('card-current');
         var thisTitle = document.getElementById('titleHeader').innerHTML;
         // Pass the title, personid and rating (1 = ok, 2 = maybe, 3 = no) to update json file
-        updateRatings(thisTitle, personId, '3');
-        console.log(thisTitle);
-
+    /*     updateRatings(thisTitle, personId, '3');
+ */
     }
     if (t.id === 'but-ok') {
         cardDivRow.classList.add('yes');
@@ -166,8 +165,8 @@ function createCardsList(data){
         const curCard = cardDivRow.getElementsByClassName('card-current');
         var thisTitle = document.getElementById('titleHeader').innerHTML;
         // Pass the title, personid and rating (1 = ok, 2 = maybe, 3 = no) to update json file
-        updateRatings(thisTitle, personId, '1');
-        console.log(thisTitle);
+     /*    updateRatings(thisTitle, personId, '1');
+ */
         
     }
   }
@@ -323,33 +322,3 @@ function createCardsList(data){
 
 
 }    
-
-
-
-/*
-var xhrRating = new XMLHttpRequest()
-xhrRating.open("GET", "http://localhost:3001/ratings")
-xhrRating.onload = function(){
-    var ratings = JSON.parse(this.response)
-
-    for (let i = 0; i < userData.length; i++){
-        var curUser = userData[i].id;
-          
-        for (let j = 0; j < ratings.length; j++){
-            
-            if(ratings[j].userId == curUser){
-              var aTd = document.createElement('td');
-                aTd.innerHTML = ratings[j].rating;
-             var rowInsertInto = document.getElementById(userData[i].username);
-                rowInsertInto.appendChild(aTd);
-            }
-            else{
-                continue;
-            }
-
-        }
-    }
-}
-xhrRating.send()
-}
-xhr.send()   */
